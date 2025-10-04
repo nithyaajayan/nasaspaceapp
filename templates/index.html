@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exoplanet Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Exoplanet Classifier</h1>
+        <form method="POST">
+            <div class="grid">
+                <label>Orbital Period</label><input type="number" step="any" name="orb_period" required>
+                <label>Transit Duration</label><input type="number" step="any" name="tran_dur" required>
+                <label>Transit Depth</label><input type="number" step="any" name="tran_depth" required>
+                <label>Planet Radius</label><input type="number" step="any" name="planet_radius" required>
+                <label>Equilibrium Temp</label><input type="number" step="any" name="eq_temp" required>
+                <label>Insolation Flux</label><input type="number" step="any" name="insol_flux" required>
+                <label>Stellar Teff</label><input type="number" step="any" name="stellar_teff" required>
+                <label>Stellar logg</label><input type="number" step="any" name="stellar_logg" required>
+                <label>Stellar Radius</label><input type="number" step="any" name="stellar_rad" required>
+                <label>RA</label><input type="number" step="any" name="ra" required>
+                <label>Dec</label><input type="number" step="any" name="dec" required>
+            </div>
+            <button type="submit">Predict</button>
+        </form>
+        
+        {% if result is not none %}
+            <div class="output">
+                <h2>Prediction:</h2>
+                <p><strong>Class:</strong> {{ result }}</p>
+                <p><strong>Probability of being class 1:</strong> {{ probability | round(4) }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
